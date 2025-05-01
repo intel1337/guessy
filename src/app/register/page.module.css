@@ -1,0 +1,263 @@
+.page {
+
+
+  --gray-rgb: 0, 0, 0;
+  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
+  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+
+  --button-primary-hover: #383838;
+  --button-secondary-hover: #f2f2f2;
+
+  display: grid;
+  position: relative;
+  grid-template-rows: 20px 1fr 20px;
+  align-items: center;
+  justify-items: center;
+  min-height: 100svh;
+  padding: 80px;
+  gap: 64px;
+  font-family: var(--font-geist-sans);
+
+
+}
+
+@media (prefers-color-scheme: dark) {
+  .page {
+    --gray-rgb: 255, 255, 255;
+    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
+    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
+
+    --button-primary-hover: #ccc;
+    --button-secondary-hover: #1a1a1a;
+  }
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+  backdrop-filter: blur(2px);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  grid-row-start: 2;
+  align-items: center;
+}
+
+
+
+
+.ctas {
+  margin-top: 10%;
+  display: flex;
+  gap: 16px;
+}
+
+.ctas span {
+  appearance: none;
+  border-radius: 128px;
+  height: 48px;
+  padding: 0 20px;
+  border: none;
+  border: 1px solid transparent;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+span.primary {
+  background: var(--foreground);
+  color: var(--background);
+  gap: 8px;
+}
+
+span.secondary {
+  border-color: var(--gray-alpha-200);
+
+}
+
+.footer {
+  grid-row-start: 3;
+  display: flex;
+  gap: 24px;
+}
+
+.footer a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer img {
+  flex-shrink: 0;
+}
+
+/* Add styles for input and button */
+.input {
+  padding: 8px;
+  margin: 10px 0;
+  border-radius: 10px;
+  text-decoration: none;
+
+  outline: none;
+  border: solid 2px rgba(255, 255, 255, 0.3);
+  background: rgba(000, 000, 000, .1);
+  font-size: 16px;
+  transition: 0.5s;
+}
+
+
+.submitButton {
+
+  padding: 10px 20px;
+  background: var(--foreground);
+  color: white;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background: var(--button-primary-hover);
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: 32px;
+    padding-bottom: 80px;
+  }
+
+  .main {
+    align-items: center;
+  }
+
+  .main ol {
+    text-align: center;
+  }
+
+  .ctas {
+    display: flex;
+    flex-direction: column; /* stack items vertically if needed */
+    align-items: center;     /* center horizontally */
+    justify-content: center; /* center vertically if height is constrained */
+    gap: 16px;
+    width: 100%;
+  }
+  
+
+  .ctas span {
+    font-size: 14px;
+    height: 40px;
+    padding: 0 16px;
+  }
+
+  span.secondary {
+    min-width: auto;
+  }
+
+  span.secondary:hover{
+    color: rgb(0, 0, 0);
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .footer {
+    z-index: 2;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .logo {
+    transition: 0.7s;
+    transform: rotate(-90deg);
+
+
+
+  }
+}
+
+
+.login {
+  text-decoration: none;
+  outline: none;
+  background-color: black;
+  border:none;
+  transition: 0.7s;
+  
+
+}
+
+.login:hover {
+  .logo{
+    display: block;
+    opacity: 1;
+    transform: translate(30%);
+  }
+}
+.herologo{
+  transition: 1s;
+
+}
+
+.herologo:hover{
+  transform: translate(0, 7%);
+
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* Center horizontally */
+  justify-content: center;  /* Center vertically (if parent has height) */
+  gap: 0px;
+  width: 100%;
+}
+
+
+.footer img {
+ filter: invert();
+}
+
+.message{
+  text-align: center;
+  margin-top: 13%;
+  z-index: 2;
+  
+
+}
+
+@media (max-width: 768px) {
+  .herologo {
+    width: 300px; 
+      /* or any smaller value */
+    height: auto;   /* maintain aspect ratio */
+    transition: 0.3s ease-in-out;
+  }
+}
+
+@media (max-width: 768px) {
+  #particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-size: 20%;
+    background-position: 50% 50%;
+    background-color: black;
+
+  }
+  
+  
+}
