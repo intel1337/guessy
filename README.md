@@ -21,11 +21,11 @@ guessy-rho.vercel.app
 - Auth Coded by Hand
 # Sources / Thanks To:
 ```
+@Chaouchi // Insane Teacher and Human Stack Overflow
 @EnPro // Full stack NextDev 
 @Niko // Angular and Co Student
 @gob // Asp.net Dev
 @JE // Fullstack Next Dev (huge experience huge shoutout)
-@Chaouchi // Insane Teacher and Human Stack Overflow
 
 https://readme.so/editor
 https://stackoverflow.com/questions
