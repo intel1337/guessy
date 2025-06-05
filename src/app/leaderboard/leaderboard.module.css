@@ -1,0 +1,180 @@
+.page {
+  --gray-rgb: 255, 255, 255;
+  --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
+  --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
+  --button-primary-hover: #ccc;
+  --button-secondary-hover: #1a1a1a;
+
+  display: grid;
+  position: relative;
+  grid-template-rows: 20px 1fr 20px;
+  align-items: center;
+  justify-items: center;
+  min-height: 100svh;
+  padding: 80px;
+  gap: 32px;
+  font-family: var(--font-geist-sans);
+  background: #000;
+  color: white;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navLinks {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.navLink {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.navLink:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.navLinkActive {
+  color: white !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.miniLogo {
+  height: 40px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.miniLogo:hover {
+  transform: scale(1.05);
+}
+
+.logoutButton {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 24px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.logoutButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0);
+  border-radius: 30px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  padding: 40px 32px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  grid-row-start: 2;
+  margin-top: 80px;
+  z-index: 3;
+  backdrop-filter: blur(3px);
+}
+
+.title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: white;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+}
+
+.subtitle {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+  margin-bottom: 32px;
+}
+
+.actions {
+  text-align: center;
+  margin-top: 32px;
+}
+
+.playButton {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 14px 28px;
+  border-radius: 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.playButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 40px 20px;
+  }
+  
+  .header {
+    padding: 12px 20px;
+  }
+  
+  .navLinks {
+    gap: 16px;
+  }
+  
+  .navLink {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .container {
+    padding: 24px 20px;
+    margin-top: 60px;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+} 

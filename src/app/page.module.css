@@ -7,15 +7,14 @@
   z-index: 5;
   display: grid;
   position: relative;
-  grid-template-rows: 1fr auto 1fr; /* Adjusted for proper centering */
+  grid-template-rows: 1fr auto 1fr;
   align-items: center;
   justify-items: center;
   min-height: 100svh;
   padding: 80px;
   gap: 64px;
   font-family: var(--font-geist-sans);
-  justify-content: center; /* Ensure the content is centered horizontally */
-
+  justify-content: center;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -38,15 +37,15 @@
   gap: 32px;
   grid-row-start: 2;
   align-items: center;
-  justify-content: center; /* Center the content inside .main */
+  justify-content: center;
 }
 
 .ctas {
   margin-top: 10%;
   display: flex;
   gap: 16px;
-  flex-wrap: wrap; /* Allow wrapping of buttons on smaller screens */
-  justify-content: center; /* Center the buttons horizontally */
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .ctas span {
@@ -83,7 +82,7 @@ span.secondary {
   grid-row-start: 3;
   display: flex;
   gap: 24px;
-  justify-content: center; /* Ensure footer links are centered */
+  justify-content: center;
 }
 
 .footer a {
@@ -96,7 +95,6 @@ span.secondary {
   flex-shrink: 0;
 }
 
-/* Add styles for input and button */
 .input {
   padding: 8px;
   margin: 10px 0;
@@ -133,9 +131,9 @@ span.secondary {
 
   .ctas {
     display: flex;
-    flex-direction: column; /* Stack items vertically if needed */
-    align-items: center; /* Center horizontally */
-    justify-content: center; /* Center vertically if height is constrained */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 16px;
     width: 100%;
   }
@@ -198,8 +196,8 @@ span.secondary {
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center horizontally */
-  justify-content: center; /* Center vertically (if parent has height) */
+  align-items: center;
+  justify-content: center;
   gap: 0px;
   width: 100%;
 }
@@ -214,12 +212,9 @@ span.secondary {
   z-index: 2;
 }
 
-
 @media (max-width: 768px) {
   .herologo {
-    width: 300px; 
-      /* or any smaller value */
-    height: auto;   /* maintain aspect ratio */
-    transition: 0.3s ease-in-out;
+    width: 100vw;
+    height: auto;
   }
 }

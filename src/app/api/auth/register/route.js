@@ -45,7 +45,7 @@ export async function POST(req) {
             'x-internal-secret': process.env.SERVER_KEY,
         };
 
-        const usersRes = await fetch('https://guessy-rho.vercel.app/api/database/getusers', {
+        const usersRes = await fetch('http://localhost:3000/api/database/getusers', {
             method: 'GET',
             headers: headers,
         });
@@ -75,11 +75,19 @@ export async function POST(req) {
             password: hashedPassword,
             numero: numero,
         };
-        await prisma.user.create({ data: newUser });
-        const token = jwt.sign({ email: newUser.email, username: newUser.username }, SECRETKEY)
-        return NextResponse.json({ status: "Successfully created user",
+        const createdUser = await prisma.user.create({ data: newUser });
+        const token = jwt.sign(
+            { 
+              id: createdUser.id,
+              username: createdUser.username
+            },
+            SECRETKEY,
+            { expiresIn: '7d' }
+        );
+        return NextResponse.json({
+            status: "Successfully created user",
             token: token
-         });
+        });
 
     } catch (err) {
         console.error(err)

@@ -123,7 +123,8 @@ exports.Prisma.UserScalarFieldEnum = {
   name: 'name',
   numero: 'numero',
   password: 'password',
-  username: 'username'
+  username: 'username',
+  score: 'score'
 };
 
 exports.Prisma.MotsScalarFieldEnum = {

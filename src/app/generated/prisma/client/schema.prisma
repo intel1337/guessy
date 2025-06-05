@@ -15,6 +15,7 @@ model User {
   numero   Int
   password String
   username String  @unique
+  score    Int     @default(0)
 }
 
 model Mots {

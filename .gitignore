@@ -1,0 +1,10 @@
+.env
+.env.exemple
+.node_modules
+.next
+.prisma
+.vercel
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

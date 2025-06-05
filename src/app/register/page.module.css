@@ -101,7 +101,6 @@ span.secondary {
   flex-shrink: 0;
 }
 
-/* Add styles for input and button */
 .input {
   padding: 8px;
   margin: 10px 0;
@@ -146,9 +145,9 @@ span.secondary {
 
   .ctas {
     display: flex;
-    flex-direction: column; /* stack items vertically if needed */
-    align-items: center;     /* center horizontally */
-    justify-content: center; /* center vertically if height is constrained */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 16px;
     width: 100%;
   }
@@ -218,8 +217,8 @@ span.secondary {
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;      /* Center horizontally */
-  justify-content: center;  /* Center vertically (if parent has height) */
+  align-items: center;
+  justify-content: center;
   gap: 0px;
   width: 100%;
 }
@@ -239,10 +238,8 @@ span.secondary {
 
 @media (max-width: 768px) {
   .herologo {
-    width: 300px; 
-      /* or any smaller value */
-    height: auto;   /* maintain aspect ratio */
-    transition: 0.3s ease-in-out;
+    width: 100vw;
+    height: auto;
   }
 }
 

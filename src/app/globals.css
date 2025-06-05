@@ -1,7 +1,6 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  /* Removed display: flex; from here */
 }
 
 
@@ -16,7 +15,7 @@ html, body {
   max-width: 100vw;
   display: flex;
   align-items: center;
-  justify-content: center;  /* Correct the typo here */
+  justify-content: center;  
   overflow-x: hidden;
 }
 

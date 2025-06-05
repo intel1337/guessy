@@ -1,6 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 
+// https://vincentgarreau.com/particles.js/ MODIFIER PLUS TARD LE SETUP
 export default function ParticlesBackground() {
   useEffect(() => {
     const loadParticlesScript = () => {
@@ -17,10 +18,12 @@ export default function ParticlesBackground() {
         script.onload = resolve;
         script.onerror = reject;
         document.body.appendChild(script);
+
+        // Particle js pas supporté sur Next 
       });
     };
 
-    loadParticlesScript()
+    loadParticlesScript() // Utilise dans use effect ou onload
       .then(() => {
         if (window.particlesJS) {
           window.particlesJS('particles-js', {
@@ -82,7 +85,7 @@ export default function ParticlesBackground() {
         width: '100%',
         height: '100%',
 
-        zIndex: 2, 
+        zIndex: 2, // 2 pour le background et 3 pour le contenu
         pointerEvents: 'auto', 
       }}
     />

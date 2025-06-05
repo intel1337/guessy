@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 import ParticlesBackground from '../components/particle';
 import Link from "next/link";
 
+// message component
 function Message({ status }) {
   return (
     <div className={styles.message}>
@@ -20,7 +21,7 @@ export default function Home() {
   const [password, setPassword] = useState('');
   const [status, setStatus] = useState('');
   const [isValid, setIsValid] = useState(true);
-
+  const [submitted, setSubmitted] = useState(false);
 
   const ifInvalid = (value) => {
     const parsed = parseInt(value, 10);
@@ -36,14 +37,13 @@ export default function Home() {
   // Handle numero input change
   const handleNumeroChange = (e) => {
     const value = e.target.value;
-    setNumero(value); // Update the numero state
-    ifInvalid(value); // Validate the value
+    setNumero(value); // Update  numero state
+    ifInvalid(value); // Validate value
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Ensure password is valid
     const parsed = parseInt(password, 10);
     setIsValid(!isNaN(parsed) && password.trim().length >= 4 && String(parsed) === password.trim());
 
@@ -59,12 +59,12 @@ export default function Home() {
     formData.set('numero', numero);
 
     try {
-      const response = await fetch('https://guessy-rho.vercel.app/api/auth/register', {
+      const response = await fetch('http://localhost:3000/api/auth/register', {
         method: 'POST',
         body: formData,
       });
 
-      // Check if the response is ok
+
       if (!response.ok) {
         throw new Error('Failed to register');
       }
@@ -75,6 +75,10 @@ export default function Home() {
       // Handle response status
       if (result.status === 'Successfully created user') {
         setStatus('User Registration successful');
+        setSubmitted(true);
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 1000);
       } else if (result.status === '429 - Too many requests') {
         setStatus('Too many attempts, try again later...');
       } else if (result.status === 'Failed to fetch users') {

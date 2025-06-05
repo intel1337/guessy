@@ -1,10 +1,10 @@
 'use client'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from "next/image";
 import styles from "./page.module.css";
 import ParticlesBackground from './components/particle';
 import Link from "next/link"
-
+import { useRouter } from 'next/navigation';
 
 function Message(param){  //replace with a component on pro d
   return(
@@ -12,14 +12,59 @@ function Message(param){  //replace with a component on pro d
       <p>{param}</p>
     </div>
   )
-
 }
 
 export default function Home() {
+  // Hooks et états du jeu
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [status, setStatus] = useState('');
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+  const router = useRouter();
 
+  // Check Le jwt dans le local storage
+  useEffect(() => {
+    checkExistingAuth();
+  }, []);
+
+  const checkExistingAuth = async () => {
+    try {
+      // get Token
+      const token = localStorage.getItem('token') 
+      
+      if (!token) {
+        setIsCheckingAuth(false);
+        return;
+      }
+
+      // Verify the token 
+      const formData = new FormData();
+      formData.append('jwt', token);
+
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const result = await response.json();
+      
+      if (result.status === 'jwt valid') {
+        // Token is valid redirect to game
+        router.push('/game');
+      } else {
+        // token is invalid
+        localStorage.removeItem('token');
+
+        setIsCheckingAuth(false);
+      }
+    } catch (error) {
+      console.error('Error verifying token:', error);
+      // remove token
+      localStorage.removeItem('token');
+
+      setIsCheckingAuth(false);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,12 +74,12 @@ export default function Home() {
     formData.append('password', password);
 
     try {
-      const response = await fetch('https://guessy-rho.vercel.app/api/auth/login', {
+      const response = await fetch('/api/auth/login', {
         method: 'POST',
         body: formData,
       });
 
-      // Check if the response is ok
+      // Check Réponse
       if (!response.ok) {
         throw new Error('Failed to login');
       }
@@ -43,30 +88,57 @@ export default function Home() {
       console.log(result)
       if (result.status === 'Valid') {
         setStatus('Login successful');
-        localStorage.setItem('token', result.token)
-        console.log(result.token)
-
-
+        // Stocker le token dans le local storage
+        localStorage.setItem('token', result.token);
+        console.log(result.token);
+        
+        // Rediriger vers le jeu après une connexion réussi
+        setTimeout(() => {
+          router.push('/game');
+        }, 1000); // délai 1 seconde pour afficher le message de succes
       } 
       else if(result.status === '429 - Too many requests'){
-        setStatus('Too many attemps, try again later...')
+        setStatus('Trop de tentatives, réessayer plus tard...')
       }
       else if(result.status === 'Failed to fetch users'){
-        setStatus('Server’s having a moment, Try Later! 😅')
+        setStatus("Le serveur est en train de se connecter, réessayer plus tard! 😅")
       }
       else if(result.status === '401 - user not found'){
-        setStatus('Account not found, Try creating one !')
+        setStatus('Compte non trouvé, créer un compte !')
       }
       else {
-        setStatus('Wrong Password or Email, Try again');
+        setStatus('Mot de passe ou email incorrect, réessayer');
       }
-    } catch (error) {
-      setStatus('Error occurred while logging in');
-
-
+    } catch (error) { // Erreur
+      setStatus('Une erreur est survenue lors de la connexion');
     }
   };
 
+  // Afficher le message de chargement pendant la vérification de l'authentification
+  if (isCheckingAuth) {
+    return (
+      <div style={{ position: 'relative', zIndex: 3 }}>
+        <ParticlesBackground />
+        <div className={styles.page}>
+          <main className={styles.main}>
+            <Image
+              className={styles.herologo}
+              src="/guessylogo.png"
+              alt="Guessy Logo.js logo"
+              width={700}
+              height={190}
+              priority
+            />
+            <div className={styles.container}>
+              <div style={{ textAlign: 'center', padding: '20px' }}>
+                <p>Vérification Utilisateur...</p>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={{ position: 'relative', zIndex: 3 }}>
@@ -133,9 +205,10 @@ export default function Home() {
 
         </main>
         <footer className={styles.footer}>
+           {/* Utiliser Next Link */}
           <a
             href="/how-to-play"
-            target="_blank"
+            target=""
             rel="noopener noreferrer"
           >
             <Image
@@ -147,34 +220,8 @@ export default function Home() {
             />
             How to Play
           </a>
-          <a
-            href="/share"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              aria-hidden
-              src="https://www.svgrepo.com/show/521832/share-1.svg"
-              alt="Share icon"
-              width={16}
-              height={16}
-            />
-            Share Your Score
-          </a>
-          <a
-            href=""
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              aria-hidden
-              src="https://www.svgrepo.com/show/533393/calendar-lines.svg"
-              alt="Calendar icon"
-              width={16}
-              height={16}
-            />
-            Daily Puzzle
-          </a>
+
+
         </footer>
 
       </div>
