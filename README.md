@@ -1,8 +1,8 @@
 # Guessy?
 Wordle Like Game coded with NextJS 
 
-<img width="1466" alt="image" src="https://github.com/user-attachments/assets/18c19577-8451-45db-a9e7-c645b037c634" />
-<a href="https://guessy-rho.vercel.app">Preview<a/>
+
+<a href="https://guessy-rho.vercel.app">Play Now for Free<a/>
 
 
 # ATTENTION !
@@ -38,7 +38,7 @@ https://eslint.org
 https://readme.so/editor
 https://laplateforme.io/ // Project for this school to candidate to a master IT
 
-
+```
 
 
 # Features
